@@ -35,6 +35,7 @@ status: developing
 - [[How to Start a SaaS Business]] - 创业方向探索
 - [[Building Technical Blog]] - 技术博客建设
 - [[Research: .NET 10 New Features]] - .NET 10 研究报告
+- [[TeamMind - SaaS Product Plan]] - 团队知识持久化平台计划
 
 ## Comparisons
 
