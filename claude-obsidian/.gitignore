@@ -1,0 +1,23 @@
+# Obsidian
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.smart-connections/
+.obsidian-git-data
+.trash/
+.DS_Store
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Temp
+*.tmp
+*.temp
