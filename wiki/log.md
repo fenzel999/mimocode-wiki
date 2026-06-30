@@ -9,6 +9,13 @@ status: developing
 
 # Operation Log
 
+## [2026-07-01] autoresearch | .NET 10 New Features
+- Rounds: 1
+- Sources found: 3
+- Pages created: [[.NET 10 Overview]], [[C# 14 Features]], [[ASP.NET Core 10 Features]], [[.NET 10]], [[Research: .NET 10 New Features]]
+- Synthesis: [[Research: .NET 10 New Features]]
+- Key finding: .NET 10 LTS 版本包含性能改进、C# 14 新特性、Blazor 声明式状态持久化、Passkey 认证等重要更新
+
 ## [2026-07-01] scaffold | Wiki Initialized
 - Created vault structure with Mode D (Personal / Second Brain)
 - Interviewed user to understand background and goals

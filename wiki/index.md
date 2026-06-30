@@ -26,10 +26,15 @@ status: developing
 
 ## Sources
 
+- [[.NET 10 Overview]] - Microsoft 官方文档
+- [[C# 14 Features]] - 语言新特性详解
+- [[ASP.NET Core 10 Features]] - Web 框架更新
+
 ## Questions
 
 - [[How to Start a SaaS Business]] - 创业方向探索
 - [[Building Technical Blog]] - 技术博客建设
+- [[Research: .NET 10 New Features]] - .NET 10 研究报告
 
 ## Comparisons
 
