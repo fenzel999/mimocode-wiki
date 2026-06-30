@@ -1,26 +1,39 @@
 ---
 type: meta
 title: "Hot Cache"
-updated: 2026-07-01T14:30:00
+updated: 2026-07-01T15:00:00
 ---
 
 # Recent Context
 
 ## Last Updated
-2026-07-01. Completed .NET 10 research.
+2026-07-01. Defined TeamMind SaaS product plan.
 
-## Key Recent Facts
-- .NET 10 is an LTS release (3 years support)
-- C# 14: Extension Members, field keyword, null-conditional assignment
-- Blazor: Declarative state persistence, Passkey support, improved form validation
-- ASP.NET Core 10: OpenAPI enhancements, Minimal API updates
-- Aspire 13.1: Cloud-native orchestration improvements
+## User Profile
+- **Background**: 前 .NET 架构师和技术管理者
+- **Status**: 失业，职业转型期
+- **Goal**: 创业，构建 SaaS 产品
+- **Tech Stack**: .NET 10, Blazor, Aspire, 微服务
 
-## Recent Changes
-- Created: [[.NET 10 Overview]], [[C# 14 Features]], [[ASP.NET Core 10 Features]]
-- Created: [[.NET 10]], [[Research: .NET 10 New Features]]
+## Key Project: TeamMind
+- **What**: AI 驱动的团队知识持久化平台
+- **Why**: 消除知识孤岛，AI 自动维护知识
+- **Tech**: Blazor + ASP.NET Core + PostgreSQL + Semantic Kernel
+- **Plan**: 10 周开发，分 4 阶段
+
+## Core Insight
+**Wiki = AI 的持久记忆**
+- AI 启动时读取 Wiki 恢复上下文
+- 工作中更新 Wiki 保持连续性
+- 跨会话不会"失忆"
+- TeamMind 就是这个理念的产品化
+
+## Recent Decisions
+- 选择 Blazor 全栈技术栈
+- 采用 .NET 10 + Aspire
+- 先开源，后托管服务变现
 
 ## Active Threads
-- User is former .NET architect exploring career transition
-- Interested in .NET 10 for SaaS product development
-- Considering technical blogging to build personal brand
+- 准备开始构建 TeamMind MVP
+- 需要创建 GitHub 仓库
+- 搭建项目骨架
