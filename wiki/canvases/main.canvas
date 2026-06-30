@@ -1,0 +1,108 @@
+{
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "text": "# TeamMind Knowledge Map\n\nAI 驱动的团队知识持久化平台",
+      "x": -400,
+      "y": -300,
+      "width": 400,
+      "height": 120,
+      "color": "6"
+    },
+    {
+      "id": "zone-product",
+      "type": "group",
+      "label": "Product",
+      "x": -400,
+      "y": -140,
+      "width": 800,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "zone-tech",
+      "type": "group",
+      "label": "Technology",
+      "x": -400,
+      "y": 300,
+      "width": 800,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "zone-user",
+      "type": "group",
+      "label": "User Profile",
+      "x": 500,
+      "y": -140,
+      "width": 400,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "note-teammind",
+      "type": "file",
+      "file": "wiki/questions/TeamMind - SaaS Product Plan.md",
+      "x": -350,
+      "y": -80,
+      "width": 250,
+      "height": 120
+    },
+    {
+      "id": "note-user",
+      "type": "file",
+      "file": "wiki/entities/User.md",
+      "x": 550,
+      "y": -80,
+      "width": 250,
+      "height": 120
+    },
+    {
+      "id": "note-dotnet10",
+      "type": "file",
+      "file": "wiki/concepts/.NET 10.md",
+      "x": -350,
+      "y": 360,
+      "width": 250,
+      "height": 120
+    },
+    {
+      "id": "note-research",
+      "type": "file",
+      "file": "wiki/questions/Research: .NET 10 New Features.md",
+      "x": -50,
+      "y": 360,
+      "width": 250,
+      "height": 120
+    },
+    {
+      "id": "text-status",
+      "type": "text",
+      "text": "## Current Status\n\n- Planning Phase\n- MVP Definition Complete\n- Ready to Build",
+      "x": 550,
+      "y": 100,
+      "width": 300,
+      "height": 120,
+      "color": "3"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-1",
+      "fromNode": "note-teammind",
+      "fromSide": "right",
+      "toNode": "note-user",
+      "toSide": "left",
+      "color": "1"
+    },
+    {
+      "id": "edge-2",
+      "fromNode": "note-teammind",
+      "fromSide": "bottom",
+      "toNode": "note-dotnet10",
+      "toSide": "top",
+      "color": "5"
+    }
+  ]
+}

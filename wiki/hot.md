@@ -1,13 +1,13 @@
 ---
 type: meta
 title: "Hot Cache"
-updated: 2026-07-01T15:00:00
+updated: 2026-07-01T15:30:00
 ---
 
 # Recent Context
 
 ## Last Updated
-2026-07-01. Defined TeamMind SaaS product plan.
+2026-07-01. Wiki initialized, .NET 10 research completed, TeamMind SaaS product plan defined.
 
 ## User Profile
 - **Background**: 前 .NET 架构师和技术管理者
@@ -28,10 +28,9 @@ updated: 2026-07-01T15:00:00
 - 跨会话不会"失忆"
 - TeamMind 就是这个理念的产品化
 
-## Recent Decisions
-- 选择 Blazor 全栈技术栈
-- 采用 .NET 10 + Aspire
-- 先开源，后托管服务变现
+## Recent Research
+- .NET 10 LTS 版本包含性能改进、C# 14 新特性
+- Blazor 声明式状态持久化、Passkey 认证等重要更新
 
 ## Active Threads
 - 准备开始构建 TeamMind MVP
