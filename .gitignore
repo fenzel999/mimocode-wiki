@@ -25,3 +25,6 @@ Desktop.ini
 # MimoCode
 .mimocode/cache/
 .mimocode/node_modules/
+
+# Claude (not needed)
+.claude/
