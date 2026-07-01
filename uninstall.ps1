@@ -2,25 +2,16 @@
 
 Write-Host "卸载 mimocode-wiki..." -ForegroundColor Cyan
 
-# 删除工具
-$toolsDest = "$env:USERPROFILE\.mimocode\tools"
-if (Test-Path $toolsDest) {
-    $toolPath = Join-Path $toolsDest "wiki.ts"
-    if (Test-Path $toolPath) {
-        Remove-Item -Path $toolPath -Force
-    }
-}
+$dest = "$env:USERPROFILE\.mimocode\skills"
 
-# 删除技能
-$skillsDest = "$env:USERPROFILE\.mimocode\skills"
-if (Test-Path $skillsDest) {
+if (Test-Path $dest) {
     $skills = @(
         "wiki", "wiki-autoresearch", "wiki-canvas", "wiki-ingest",
         "wiki-lint", "wiki-query", "wiki-save", "wiki-think"
     )
     
     foreach ($skill in $skills) {
-        $path = Join-Path $skillsDest $skill
+        $path = Join-Path $dest $skill
         if (Test-Path $path) {
             Remove-Item -Path $path -Recurse -Force
         }
