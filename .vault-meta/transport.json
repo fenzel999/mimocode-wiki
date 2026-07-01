@@ -1,6 +1,0 @@
-{
-  "preferred": "filesystem",
-  "fallback": ["filesystem"],
-  "detected_at": "2026-07-01",
-  "refresh_weekly": true
-}

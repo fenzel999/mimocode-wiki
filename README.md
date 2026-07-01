@@ -1,336 +1,439 @@
-# TeamMind Wiki - 使用说明书
+# mimocode-wiki: AI 驱动的个人知识管理系统
 
-> AI 驱动的个人知识管理系统，基于 Karpathy LLM Wiki Pattern
+> 基于 Karpathy LLM Wiki Pattern，专为 MimoCode 打造
 
-## 快速开始
+## 目录
 
-### 1. 启动
+1. [项目简介](#项目简介)
+2. [什么是 Obsidian](#什么是-obsidian)
+3. [安装 Obsidian](#安装-obsidian)
+4. [安装插件](#安装插件)
+5. [安装项目](#安装项目)
+6. [使用教程](#使用教程)
+7. [功能演示](#功能演示)
+8. [卸载说明](#卸载说明)
+9. [内容保存](#内容保存)
+10. [常见问题](#常见问题)
+
+---
+
+## 项目简介
+
+mimocode-wiki 是一个 AI 驱动的个人知识管理系统。它使用 MimoCode 的技能系统，让 AI 自动帮你整理笔记、建立知识图谱、进行深度研究。
+
+### 核心特性
+
+- **自动整理**：AI 自动提取实体、概念，建立关联
+- **持久记忆**：跨会话保持连续性，不会"失忆"
+- **深度研究**：自动搜索、整理、归档研究结果
+- **可视化图谱**：在 Obsidian 中查看知识关联
+
+---
+
+## 什么是 Obsidian
+
+Obsidian 是一个基于本地 Markdown 文件的知识管理工具。
+
+### 为什么用 Obsidian？
+
+- **本地存储**：所有数据都在你的电脑上，没有云端依赖
+- **双向链接**：轻松建立笔记之间的关联
+- **图谱视图**：可视化知识网络
+- **插件丰富**：通过插件扩展功能
+- **免费使用**：核心功能完全免费
+
+### Obsidian vs 其他工具
+
+| 特性 | Obsidian | Notion | Evernote |
+|------|----------|--------|----------|
+| 数据存储 | 本地 | 云端 | 云端 |
+| 离线使用 | ✅ | ❌ | ⚠️ 有限 |
+| 双向链接 | ✅ | ⚠️ 有限 | ❌ |
+| 图谱视图 | ✅ | ❌ | ❌ |
+| 插件系统 | ✅ | ⚠️ 有限 | ❌ |
+| 价格 | 免费 | 免费/付费 | 免费/付费 |
+
+---
+
+## 安装 Obsidian
+
+### Windows
+
+1. 访问 https://obsidian.md/download
+2. 下载 Windows 版本
+3. 运行安装程序
+4. 按照提示完成安装
+
+### macOS
+
+1. 访问 https://obsidian.md/download
+2. 下载 macOS 版本
+3. 拖动 Obsidian 到 Applications 文件夹
+
+### Linux
+
+```bash
+# Flatpak
+flatpak install flathub md.obsidian.Obsidian
+
+# 或下载 AppImage
+```
+
+### 首次启动
+
+1. 启动 Obsidian
+2. 选择 "Open folder as vault"
+3. 选择项目目录（mimocode-wiki）
+4. 点击 "Trust author and enable plugins"
+
+---
+
+## 安装插件
+
+### 必需插件
+
+#### 1. Templater（模板引擎）
+
+1. 打开 Obsidian
+2. 点击左下角齿轮图标（设置）
+3. 选择 "Community Plugins"
+4. 点击 "Browse"
+5. 搜索 "Templater"
+6. 点击 "Install"
+7. 安装后点击 "Enable"
+
+**配置 Templater**：
+1. 设置 > Templater
+2. Template folder location: `_templates`
+3. Trigger Templater on new file creation: 开启
+
+#### 2. Obsidian Git（自动备份）
+
+1. 设置 > Community Plugins > Browse
+2. 搜索 "Obsidian Git"
+3. 安装并启用
+
+**配置 Obsidian Git**：
+1. 设置 > Obsidian Git
+2. Auto backup interval: 15 minutes
+3. Backup on file change: 开启
+4. Pull updates on startup: 开启
+
+#### 3. Dataview（查询引擎）
+
+1. 设置 > Community Plugins > Browse
+2. 搜索 "Dataview"
+3. 安装并启用
+
+**配置 Dataview**：
+1. 设置 > Dataview
+2. Enable JavaScript Queries: 开启
+3. Enable Inline Queries: 开启
+
+### 可选插件
+
+- **Calendar**：右侧日历视图
+- **Excalidraw**：绘图工具
+- **Banners**：页面横幅
+
+---
+
+## 安装项目
+
+### 方法 1: 从 GitHub 下载（推荐）
+
+1. 访问 https://github.com/fenzel999/mimocode-wiki
+2. 点击绿色 "Code" 按钮
+3. 选择 "Download ZIP"
+4. 解压到你喜欢的位置
+5. 打开 Obsidian，选择解压后的目录作为 Vault
+
+### 方法 2: 使用 Git
 
 ```powershell
-cd D:\fenzel\source\repos\fff
-mimocode
+# 配置代理（如果你需要）
+git config --global http.proxy http://127.0.0.1:31181
+git config --global https.proxy http://127.0.0.1:31181
+
+# 克隆仓库
+git clone https://github.com/fenzel999/mimocode-wiki.git
+
+# 进入目录
+cd mimocode-wiki
 ```
 
-### 2. 首次使用
+### 方法 3: 一键安装脚本
 
-输入 `/wiki` 开始设置 Wiki。
+```powershell
+# 运行安装脚本
+.\bin\install.ps1
+```
 
 ---
 
-## 核心技能
+## 使用教程
 
-### `/wiki` - Wiki 主入口
+### 第一步：初始化 Wiki
 
-**功能**: 设置和管理 Wiki 知识库
+1. 打开 MimoCode
+2. 输入 `/wiki`
+3. AI 会问你："这个 Wiki 用来做什么？"
+4. 回答后，Wiki 自动创建完成
 
-**用法**:
+### 第二步：添加知识
+
+**单个文件**：
 ```
-/wiki
+ingest .raw/notes.txt
 ```
 
-**功能**:
-- 初始化 Wiki 结构
-- 选择组织模式（Generic/LYT/PARA/Zettelkasten）
-- 创建目录和模板
-
----
-
-### `ingest [文件]` - 摄取文件
-
-**功能**: 将文件添加到 Wiki 知识库
-
-**用法**:
+**批量文件**：
 ```
-ingest .raw/article.md
+ingest all of these
+```
+
+**从 URL**：
+```
 ingest https://example.com/article
 ```
 
-**流程**:
-1. 读取源文件
-2. 提取实体和概念
-3. 创建 Wiki 页面
-4. 更新索引和日志
+### 第三步：查询知识
 
----
-
-### `query: [问题]` - 查询知识
-
-**功能**: 从 Wiki 中查找答案
-
-**用法**:
 ```
 query: 我的技术背景是什么？
-query: TeamMind 的技术栈是什么？
 query quick: .NET 10 是什么？
 query deep: 全面分析 Blazor 的优缺点
 ```
 
-**模式**:
-- `query quick:` - 快速查询（仅读取 hot.md 和 index.md）
-- `query:` - 标准查询（读取 3-5 个相关页面）
-- `query deep:` - 深度查询（读取所有相关页面）
+### 第四步：保存对话
 
----
-
-### `lint the wiki` - 健康检查
-
-**功能**: 检查 Wiki 的健康状态
-
-**用法**:
-```
-lint the wiki
-```
-
-**检查内容**:
-- 孤立页面（没有入链的页面）
-- 死链接（链接到不存在的页面）
-- 缺失的 frontmatter 字段
-- 过时的内容
-
----
-
-### `/save` - 保存对话
-
-**功能**: 将当前对话保存到 Wiki
-
-**用法**:
 ```
 /save
 /save 我的职业规划
 ```
 
-**保存位置**: `wiki/questions/` 或 `wiki/concepts/`
+### 第五步：深度研究
 
----
-
-### `/autoresearch [主题]` - 自动研究
-
-**功能**: 自动搜索、整理、归档研究结果
-
-**用法**:
 ```
 /autoresearch .NET 10 新特性
 /autoresearch Blazor 最佳实践
+```
+
+### 第六步：可视化图谱
+
+```
+/canvas
+/canvas add note [.NET 10]
+/canvas add text "关键洞察"
+```
+
+### 第七步：深度思考
+
+```
+/think 我应该如何开始构建项目？
+/think 如何平衡求职和创业？
+```
+
+### 第八步：健康检查
+
+```
+lint the wiki
+```
+
+---
+
+## 功能演示
+
+### 示例 1：添加技术笔记
+
+```
+# 创建一个测试文件
+# 文件内容：# .NET 10 新特性
+
+## C# 14
+- 字段关键字
+- 空条件赋值
+- 扩展成员
+
+## ASP.NET Core
+- Blazor 改进
+- Minimal API 增强
+
+# 在 MimoCode 中运行
+ingest .raw/dotnet10.md
+```
+
+### 示例 2：查询知识
+
+```
+query: .NET 10 有什么新特性？
+```
+
+AI 会从 Wiki 中找到相关页面并综合回答。
+
+### 示例 3：创建知识图谱
+
+```
+/canvas new "技术学习"
+/canvas add note [.NET 10]
+/canvas add note [Blazor]
+/canvas add text "技术栈规划"
+```
+
+在 Obsidian 中打开 `wiki/canvases/技术学习.canvas` 查看图谱。
+
+### 示例 4：深度研究
+
+```
 /autoresearch 微服务架构设计
 ```
 
-**流程**:
-1. 搜索相关资料
-2. 提取关键信息
-3. 创建 Wiki 页面
-4. 交叉引用
+AI 会自动搜索相关资料，整理成 Wiki 页面。
 
 ---
 
-### `/canvas` - 可视化图谱
+## 卸载说明
 
-**功能**: 创建和管理可视化知识图谱
+### 卸载 Obsidian
 
-**用法**:
-```
-/canvas                          # 查看状态
-/canvas new research             # 创建新画布
-/canvas add note [.NET 10]       # 添加 Wiki 页面
-/canvas add text "关键洞察"      # 添加文本卡片
-/canvas zone "Product"           # 添加区域
-/canvas list                     # 列出所有节点
-```
+1. 关闭 Obsidian
+2. Windows：设置 > 应用 > 卸载 Obsidian
+3. macOS：拖动 Obsidian 到废纸篓
+4. Linux：根据安装方式卸载
 
----
+**注意**：卸载 Obsidian 不会删除你的笔记数据。
 
-### `/think [问题]` - 深度思考
+### 卸载插件
 
-**功能**: 用 10 原则框架分析复杂问题
+1. 打开 Obsidian
+2. 设置 > Community Plugins
+3. 点击插件旁边的垃圾桶图标
+4. 确认卸载
 
-**用法**:
-```
-/think 我应该如何开始构建 TeamMind？
-/think 如何平衡求职和创业？
-/think 选择什么技术栈最合适？
-```
+### 卸载项目
 
-**10 原则**:
-1. OBSERVE (外部) - 收集数据
-2. OBSERVE (内部) - 反思偏见
-3. LISTEN - 倾听需求
-4. THINK - 分析问题
-5. CONNECT (横向) - 关联思考
-6. CONNECT (系统) - 整体思考
-7. FEEL - 直觉判断
-8. ACCEPT - 接受现实
-9. CREATE - 产出方案
-10. GROW - 迭代改进
+1. 删除项目目录
+2. 删除 Obsidian 配置（可选）：
+   - Windows: `%APPDATA%\Obsidian`
+   - macOS: `~/Library/Application Support/Obsidian`
+   - Linux: `~/.config/Obsidian`
 
----
+### 卸载 MimoCode 技能
 
-## 辅助技能
+```powershell
+# 删除全局技能
+Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\*" -Recurse -Force
 
-### `defuddle [URL]` - 清理网页
-
-**功能**: 清理网页内容，提取纯文本
-
-**用法**:
-```
-defuddle https://example.com/article
-```
-
-**效果**: 减少 40-60% 的 token 消耗
-
----
-
-### `retrieve [查询]` - 混合检索
-
-**功能**: 更精准的知识检索
-
-**用法**:
-```
-retrieve 如何设计微服务架构
-```
-
-**技术**: BM25 + 语义排序
-
----
-
-### `fold the log` - 日志折叠
-
-**功能**: 将日志条目汇总为摘要页面
-
-**用法**:
-```
-fold the log, dry-run k=3
-fold the log, commit k=3
+# 或删除特定技能
+Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\wiki*" -Recurse -Force
 ```
 
 ---
 
-## 文件结构
+## 内容保存
 
+### 卸载后内容是否保留？
+
+**是的，内容会保留！**
+
+- **Obsidian 卸载**：笔记数据保存在项目目录中，不会被删除
+- **插件卸载**：插件配置被删除，但笔记内容保留
+- **项目删除**：如果你删除了项目目录，内容会丢失
+
+### 备份建议
+
+1. **定期备份**：使用 Obsidian Git 自动备份
+2. **手动备份**：复制整个项目目录
+3. **云同步**：使用 OneDrive、Dropbox 等同步工具
+
+### 如何恢复
+
+如果意外删除了内容：
+
+```powershell
+# 从 Git 恢复
+git checkout -- .
+
+# 从备份恢复
+# 复制备份文件到项目目录
 ```
-D:\fenzel\source\repos\fff\
-├── .mimocode\skills\        # 15 个技能
-├── .raw\                    # 源文件（放入要摄取的文件）
-├── wiki\                    # Wiki 知识库
-│   ├── index.md             # 主目录
-│   ├── hot.md               # 最近上下文（AI 首先读取）
-│   ├── log.md               # 操作日志
-│   ├── overview.md          # 概览
-│   ├── sources\             # 源文件摘要
-│   ├── entities\            # 实体（人物、组织）
-│   ├── concepts\            # 概念和想法
-│   ├── domains\             # 领域
-│   ├── questions\           # 问答
-│   ├── comparisons\         # 对比分析
-│   ├── meta\                # 元数据
-│   └── canvases\            # 可视化图谱
-├── _templates\              # 模板文件
-├── _attachments\            # 附件
-├── CLAUDE.md                # 项目配置
-└── WIKI.md                  # Wiki 架构参考
-```
-
----
-
-## 日常工作流
-
-### 早上开始
-
-1. 启动 MimoCode
-2. AI 自动读取 `wiki/hot.md` 恢复上下文
-3. 继续昨天的工作
-
-### 添加知识
-
-1. 将文件放入 `.raw/` 目录
-2. 输入 `ingest .raw/your-file.md`
-3. AI 自动整理和归档
-
-### 查询知识
-
-1. 输入 `query: [你的问题]`
-2. AI 从 Wiki 中找答案
-3. 可选：`/save` 保存问答
-
-### 深度研究
-
-1. 输入 `/autoresearch [主题]`
-2. AI 自动搜索和整理
-3. 创建多个 Wiki 页面
-
-### 可视化
-
-1. 输入 `/canvas` 查看知识图谱
-2. 在 Obsidian 中打开查看
-
-### 结束工作
-
-1. 输入 `/save` 保存当前对话
-2. AI 更新 `wiki/hot.md`
-3. 下次启动时自动恢复
-
----
-
-## AI 持久记忆
-
-**核心原理**: Wiki = AI 的持久记忆
-
-```
-会话开始 → 读取 hot.md → 恢复上下文 → 工作 → 更新 Wiki
-    ↑                                           ↓
-    └───────────────────────────────────────────┘
-```
-
-**效果**:
-- 跨会话保持连续性
-- 不会"失忆"
-- 知识持续积累
-
----
-
-## 技术栈
-
-- **前端**: Blazor Server (.NET 10)
-- **后端**: ASP.NET Core Minimal APIs
-- **数据库**: PostgreSQL + Redis
-- **AI**: Semantic Kernel + OpenAI/开源模型
-- **搜索**: Meilisearch
-- **部署**: Docker + Aspire 13.1
 
 ---
 
 ## 常见问题
 
-### Q: 如何在其他目录使用 Wiki？
+### Q: Obsidian 是免费的吗？
 
-在全局配置中添加 Wiki 路径：
+是的，Obsidian 核心功能完全免费。同步服务和发布服务需要付费，但不是必需的。
 
-```markdown
-# C:\Users\fenze\.mimocode\CLAUDE.md
+### Q: 我的数据安全吗？
 
-## Wiki Knowledge Base
-Path: D:\fenzel\source\repos\fff\wiki
+是的，所有数据都保存在你的本地电脑上，没有云端依赖。
+
+### Q: 可以在多台电脑上使用吗？
+
+可以，使用 Obsidian Sync 或其他同步工具（OneDrive、Dropbox）同步项目目录。
+
+### Q: 如何更新项目？
+
+```powershell
+cd mimocode-wiki
+git pull
 ```
 
-### Q: Wiki 文件太大怎么办？
+### Q: 遇到问题怎么办？
 
-使用 `fold the log` 折叠日志，或 `lint the wiki` 检查并清理。
-
-### Q: 如何备份 Wiki？
-
-Wiki 就是普通文件，直接备份整个目录即可。
-
-### Q: 如何与团队共享？
-
-将 Wiki 目录放在共享位置，或使用 Git 同步。
+1. 检查插件是否正确安装
+2. 重启 Obsidian
+3. 查看 Obsidian 控制台（Ctrl+Shift+I）
+4. 在 GitHub 提交 Issue
 
 ---
 
-## 更多资源
+## 技能列表
 
-- [Karpathy LLM Wiki Pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
-- [claude-obsidian 原项目](https://github.com/AgriciDaniel/claude-obsidian)
-- [Obsidian 官网](https://obsidian.md)
+| 技能 | 命令 | 功能 |
+|------|------|------|
+| wiki | `/wiki` | 初始化 Wiki |
+| wiki-ingest | `ingest [文件]` | 添加知识 |
+| wiki-query | `query: [问题]` | 查询知识 |
+| wiki-lint | `lint the wiki` | 健康检查 |
+| wiki-retrieve | `retrieve [查询]` | 混合检索 |
+| wiki-mode | `set vault mode` | 切换模式 |
+| wiki-cli | `wiki-cli` | Obsidian CLI |
+| wiki-fold | `fold the log` | 日志折叠 |
+| save | `/save` | 保存对话 |
+| autoresearch | `/autoresearch [主题]` | 自动研究 |
+| canvas | `/canvas` | 可视化图谱 |
+| think | `/think [问题]` | 深度思考 |
+| defuddle | `defuddle [URL]` | 清理网页 |
+| obsidian-bases | 参考用 | 数据库视图 |
+| obsidian-markdown | 参考用 | Markdown 语法 |
 
 ---
 
-**版本**: 1.0.0
-**更新日期**: 2026-07-01
+## 代理列表
+
+| 代理 | 功能 |
+|------|------|
+| wiki-ingest | 摄取源文件 |
+| wiki-lint | 健康检查 |
+| wiki-research | 自动研究 |
+
+---
+
+## 贡献
+
+欢迎贡献！请查看 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+---
+
+## 许可证
+
+MIT License - 详见 [LICENSE](LICENSE)
+
+---
+
+**版本**: 1.0.0  
+**更新日期**: 2026-07-01  
+**作者**: fenzel999
