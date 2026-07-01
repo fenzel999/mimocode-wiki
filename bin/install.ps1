@@ -1,19 +1,12 @@
 # install.ps1 - mimocode-wiki 一键安装脚本
-# 使用代理端口: 31181
 
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "  mimocode-wiki 安装程序" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
-# 1. 配置代理
-Write-Host "1. 配置代理..." -ForegroundColor Yellow
-git config --global http.proxy http://127.0.0.1:31181
-git config --global https.proxy http://127.0.0.1:31181
-Write-Host "   代理已配置: 127.0.0.1:31181" -ForegroundColor Green
-
-# 2. 克隆仓库
-Write-Host "2. 克隆仓库..." -ForegroundColor Yellow
+# 1. 克隆仓库
+Write-Host "1. 克隆仓库..." -ForegroundColor Yellow
 if (Test-Path "mimocode-wiki") {
     Write-Host "   仓库已存在，跳过克隆" -ForegroundColor Gray
 } else {
@@ -21,11 +14,11 @@ if (Test-Path "mimocode-wiki") {
     Write-Host "   仓库克隆完成" -ForegroundColor Green
 }
 
-# 3. 进入目录
+# 2. 进入目录
 Set-Location -Path "mimocode-wiki"
 
-# 4. 安装 MimoCode 技能
-Write-Host "3. 安装 MimoCode 技能..." -ForegroundColor Yellow
+# 3. 安装 MimoCode 技能
+Write-Host "2. 安装 MimoCode 技能..." -ForegroundColor Yellow
 $skillsSource = ".\.mimocode\skills"
 $skillsDest = "$env:USERPROFILE\.mimocode\skills"
 
@@ -37,8 +30,8 @@ if (Test-Path $skillsSource) {
     Write-Host "   技能目录不存在，跳过" -ForegroundColor Gray
 }
 
-# 5. 安装 Obsidian 插件（可选）
-Write-Host "4. 检查 Obsidian..." -ForegroundColor Yellow
+# 4. 检查 Obsidian
+Write-Host "3. 检查 Obsidian..." -ForegroundColor Yellow
 $obsidianPath = "$env:LOCALAPPDATA\Obsidian\Obsidian.exe"
 if (Test-Path $obsidianPath) {
     Write-Host "   Obsidian 已安装" -ForegroundColor Green
