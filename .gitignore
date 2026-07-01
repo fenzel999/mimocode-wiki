@@ -1,20 +1,17 @@
+# MimoCode
+.mimocode/node_modules/
+.mimocode/cache/
+
 # Obsidian
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
+.obsidian/plugins/
+.obsidian/themes/
 .smart-connections/
 .obsidian-git-data
-.trash/
-.DS_Store
-
-# Node
-node_modules/
-
-# Python
-__pycache__/
-*.pyc
-.venv/
 
 # OS
+.DS_Store
 Thumbs.db
 Desktop.ini
 
@@ -22,9 +19,5 @@ Desktop.ini
 *.tmp
 *.temp
 
-# MimoCode
-.mimocode/cache/
-.mimocode/node_modules/
-
-# Claude (not needed)
-.claude/
+# Vault metadata (generated)
+.vault-meta/locks/
