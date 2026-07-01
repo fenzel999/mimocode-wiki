@@ -1,0 +1,9 @@
+{
+  "showLineNumber": true,
+  "showFrontmatter": true,
+  "livePreview": true,
+  "readableLineLength": true,
+  "strictLineBreaks": false,
+  "attachmentFolderPath": "_attachments",
+  "newFileLocation": "current"
+}
