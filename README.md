@@ -133,18 +133,25 @@ lint the wiki
 
 ## Skills 列表（AI 的操作手册）
 
+### Wiki 相关技能（带 wiki- 前缀）
+
 | 技能 | 功能 |
 |------|------|
 | wiki | Wiki 主入口，初始化和管理 |
 | wiki-ingest | 摄取源文件的详细指南 |
 | wiki-query | 查询知识的详细指南 |
 | wiki-lint | 健康检查的详细指南 |
-| wiki-retrieve | **混合检索**（BM25 + 语义排序，更精准的搜索） |
+| wiki-retrieve | 混合检索（BM25 + 语义排序，更精准的搜索） |
 | wiki-mode | 切换 Wiki 组织模式 |
 | wiki-cli | Obsidian CLI 操作 |
 | wiki-fold | 日志折叠 |
+| wiki-autoresearch | 自动研究的详细指南 |
+
+### 通用技能（不带 wiki- 前缀）
+
+| 技能 | 功能 |
+|------|------|
 | save | 保存对话的详细指南 |
-| autoresearch | 自动研究的详细指南 |
 | canvas | 可视化图谱的详细指南 |
 | think | 10 原则深度思考的详细指南 |
 | defuddle | 清理网页内容 |
@@ -164,15 +171,11 @@ lint the wiki
 
 ## Commands 列表（用户的快捷命令）
 
-| 命令 | 触发的技能 | 功能 |
-|------|-----------|------|
-| `/wiki` | wiki | 初始化 Wiki |
-| `/wiki-init` | wiki | 初始化 Wiki |
-| `/wiki-save` | save | 保存对话 |
-| `/wiki-autoresearch` | autoresearch | 自动研究 |
-| `/canvas` | canvas | 可视化图谱 |
-| `/save` | save | 保存对话 |
-| `/autoresearch` | autoresearch | 自动研究 |
+| 命令 | 功能 |
+|------|------|
+| `/wiki-init` | 初始化 Wiki |
+| `/wiki-save` | 保存对话 |
+| `/wiki-autoresearch` | 自动研究 |
 
 ## Agents 列表（专门的子代理）
 
