@@ -2,11 +2,19 @@
 
 Write-Host "安装 mimocode-wiki..." -ForegroundColor Cyan
 
-$source = "$PSScriptRoot\skills"
-$dest = "$env:USERPROFILE\.mimocode\skills"
+# 复制工具到 MimoCode
+$toolsSource = "$PSScriptRoot\tools"
+$toolsDest = "$env:USERPROFILE\.mimocode\tools"
 
-New-Item -ItemType Directory -Path $dest -Force | Out-Null
-Copy-Item -Path "$source\*" -Destination $dest -Recurse -Force
+New-Item -ItemType Directory -Path $toolsDest -Force | Out-Null
+Copy-Item -Path "$toolsSource\*" -Destination $toolsDest -Recurse -Force
+
+# 复制技能到 MimoCode
+$skillsSource = "$PSScriptRoot\skills"
+$skillsDest = "$env:USERPROFILE\.mimocode\skills"
+
+New-Item -ItemType Directory -Path $skillsDest -Force | Out-Null
+Copy-Item -Path "$skillsSource\*" -Destination $skillsDest -Recurse -Force
 
 Write-Host "安装完成！" -ForegroundColor Green
 Write-Host ""
