@@ -6,9 +6,8 @@ $dest = "$env:USERPROFILE\.mimocode\skills"
 
 if (Test-Path $dest) {
     $skills = @(
-        "autoresearch", "canvas", "defuddle", "obsidian-bases", "obsidian-markdown",
-        "save", "think", "wiki", "wiki-cli", "wiki-fold", "wiki-ingest",
-        "wiki-lint", "wiki-mode", "wiki-query", "wiki-retrieve"
+        "autoresearch", "canvas", "save", "think",
+        "wiki", "wiki-ingest", "wiki-lint", "wiki-query"
     )
     
     foreach ($skill in $skills) {

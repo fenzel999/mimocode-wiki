@@ -3,7 +3,7 @@
 Write-Host "安装 mimocode-wiki..." -ForegroundColor Cyan
 
 # 复制技能到 MimoCode
-$source = "$PSScriptRoot\..\skills"
+$source = "$PSScriptRoot\skills"
 $dest = "$env:USERPROFILE\.mimocode\skills"
 
 New-Item -ItemType Directory -Path $dest -Force | Out-Null
