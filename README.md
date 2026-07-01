@@ -115,26 +115,72 @@ query deep: 全面分析 Blazor 的优缺点
 lint the wiki
 ```
 
-## 技能列表
+## 三者区别：Skills vs Commands vs Agents
 
-| 技能 | 命令 | 功能 |
+| 类型 | 作用 | 类比 |
 |------|------|------|
-| wiki | `/wiki` | 初始化 Wiki |
-| wiki-ingest | `ingest [文件]` | 添加知识 |
-| wiki-query | `query: [问题]` | 查询知识 |
-| wiki-lint | `lint the wiki` | 健康检查 |
-| save | `/save` | 保存对话 |
-| autoresearch | `/autoresearch [主题]` | 自动研究 |
-| canvas | `/canvas` | 可视化图谱 |
-| think | `/think [问题]` | 深度思考 |
+| **Skills** | AI 的知识库/说明书 | 像一本操作手册，AI 按需读取 |
+| **Commands** | 用户的快捷命令 | 像键盘快捷键，一键触发 |
+| **Agents** | 专门的子代理 | 像雇了一个专家来处理特定任务 |
 
-## 代理列表
+### 工作流程
 
-| 代理 | 功能 |
+```
+用户输入命令 → Commands 触发 → AI 加载对应 Skill → 执行任务
+                                    ↓
+                              复杂任务调用 Agent
+```
+
+## Skills 列表（AI 的操作手册）
+
+| 技能 | 功能 |
 |------|------|
-| wiki-ingest | 摄取源文件 |
-| wiki-lint | 健康检查 |
-| wiki-research | 自动研究 |
+| wiki | Wiki 主入口，初始化和管理 |
+| wiki-ingest | 摄取源文件的详细指南 |
+| wiki-query | 查询知识的详细指南 |
+| wiki-lint | 健康检查的详细指南 |
+| wiki-retrieve | **混合检索**（BM25 + 语义排序，更精准的搜索） |
+| wiki-mode | 切换 Wiki 组织模式 |
+| wiki-cli | Obsidian CLI 操作 |
+| wiki-fold | 日志折叠 |
+| save | 保存对话的详细指南 |
+| autoresearch | 自动研究的详细指南 |
+| canvas | 可视化图谱的详细指南 |
+| think | 10 原则深度思考的详细指南 |
+| defuddle | 清理网页内容 |
+| obsidian-bases | 数据库视图参考 |
+| obsidian-markdown | Markdown 语法参考 |
+
+### wiki-retrieve 是什么？
+
+**混合检索** = BM25（关键词搜索）+ 语义排序（理解含义）
+
+普通搜索：只匹配关键词
+混合搜索：理解语义，找到最相关的段落
+
+例如搜索 ".NET 性能优化"：
+- 普通搜索：找到包含"性能"和"优化"的页面
+- 混合搜索：找到真正讨论性能优化的段落，即使没有完全匹配关键词
+
+## Commands 列表（用户的快捷命令）
+
+| 命令 | 触发的技能 | 功能 |
+|------|-----------|------|
+| `/wiki` | wiki | 初始化 Wiki |
+| `/wiki-init` | wiki | 初始化 Wiki |
+| `/wiki-save` | save | 保存对话 |
+| `/wiki-autoresearch` | autoresearch | 自动研究 |
+| `/canvas` | canvas | 可视化图谱 |
+| `/save` | save | 保存对话 |
+| `/autoresearch` | autoresearch | 自动研究 |
+
+## Agents 列表（专门的子代理）
+
+| 代理 | 功能 | 何时使用 |
+|------|------|---------|
+| wiki-ingest | 摄取源文件 | 执行 `ingest` 命令时 |
+| wiki-lint | 健康检查 | 执行 `lint the wiki` 时 |
+| wiki-research | 自动研究 | 执行 `/autoresearch` 时 |
 
 ## 卸载说明
 
