@@ -1,22 +1,37 @@
-# uninstall.ps1 - 一键卸载
+# uninstall.ps1 - mimocode-wiki uninstaller
 
-Write-Host "卸载 mimocode-wiki..." -ForegroundColor Cyan
+$ErrorActionPreference = "Stop"
+$mimocodeSkills = Join-Path $env:USERPROFILE ".mimocode\skills"
 
-$dest = "$env:USERPROFILE\.mimocode\skills"
+Write-Host ""
+Write-Host "  mimocode-wiki uninstaller" -ForegroundColor Cyan
+Write-Host "  =========================" -ForegroundColor Cyan
+Write-Host ""
 
-if (Test-Path $dest) {
-    $skills = @(
-        "wiki", "wiki-autoresearch", "wiki-canvas", "wiki-ingest",
-        "wiki-lint", "wiki-query", "wiki-save", "wiki-think"
-    )
-    
-    foreach ($skill in $skills) {
-        $path = Join-Path $dest $skill
-        if (Test-Path $path) {
-            Remove-Item -Path $path -Recurse -Force
-        }
+# ── Remove skills ──────────────────────────────────────────────────────
+Write-Host "Removing skills ..." -ForegroundColor Yellow
+
+$skillDirs = @(
+    "wiki", "wiki-ingest", "wiki-query", "wiki-lint",
+    "wiki-save", "wiki-autoresearch", "wiki-canvas", "wiki-think"
+)
+
+foreach ($dir in $skillDirs) {
+    $skillPath = Join-Path $mimocodeSkills $dir
+    if (Test-Path $skillPath) {
+        Remove-Item -Recurse -Force $skillPath
+        Write-Host "  - Removed $dir/" -ForegroundColor Green
     }
 }
 
-Write-Host "卸载完成！" -ForegroundColor Green
-Write-Host "只删除了 mimocode-wiki 的插件，其他插件不受影响。" -ForegroundColor White
+Write-Host ""
+
+# ── Ask about wiki vault ──────────────────────────────────────────────
+Write-Host "The wiki vault files (.raw/, wiki/, AGENTS.md, etc.) are in the current directory." -ForegroundColor Yellow
+Write-Host "These are NOT removed automatically to prevent data loss." -ForegroundColor Yellow
+Write-Host ""
+Write-Host "To manually remove them, delete:" -ForegroundColor White
+Write-Host "  .raw/  wiki/  .archive/  _templates/  _attachments/  AGENTS.md  .gitignore" -ForegroundColor DarkGray
+Write-Host ""
+Write-Host "Uninstall complete." -ForegroundColor Green
+Write-Host ""

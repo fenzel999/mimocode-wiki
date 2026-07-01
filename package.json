@@ -1,0 +1,40 @@
+{
+  "name": "mimocode-wiki",
+  "version": "1.0.0",
+  "description": "AI-driven knowledge management wiki for MiMoCode + Obsidian, based on Karpathy LLM Wiki Pattern",
+  "type": "module",
+  "main": "install.js",
+  "bin": {
+    "mimocode-wiki": "install.js"
+  },
+  "scripts": {
+    "install": "node install.js",
+    "uninstall": "node uninstall.js"
+  },
+  "keywords": [
+    "mimocode",
+    "obsidian",
+    "wiki",
+    "knowledge-management",
+    "second-brain",
+    "llm",
+    "karpathy"
+  ],
+  "author": "fenzel999",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fenzel999/mimocode-wiki.git"
+  },
+  "mimocode": {
+    "skills": "skills/",
+    "dependencies": {
+      "obsidian": ">=1.0.0",
+      "plugins": [
+        "obsidian-local-rest-api",
+        "templater-obsidian",
+        "dataview"
+      ]
+    }
+  }
+}
