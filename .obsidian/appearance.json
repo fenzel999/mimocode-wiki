@@ -1,8 +1,0 @@
-{
-  "baseFontSize": 16,
-  "theme": "obsidian",
-  "cssTheme": "",
-  "cssSnippets": [
-    "snippets/vault-colors.css"
-  ]
-}

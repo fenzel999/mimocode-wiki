@@ -2,220 +2,58 @@
 
 > 基于 Karpathy LLM Wiki Pattern，专为 MimoCode 打造
 
-## 目录
-
-1. [项目简介](#项目简介)
-2. [什么是 Obsidian](#什么是-obsidian)
-3. [安装 Obsidian](#安装-obsidian)
-4. [安装插件](#安装插件)
-5. [安装项目](#安装项目)
-6. [使用教程](#使用教程)
-7. [功能演示](#功能演示)
-8. [技能参考](#技能参考)
-9. [卸载说明](#卸载说明)
-10. [常见问题](#常见问题)
-
----
-
-## 项目简介
-
-mimocode-wiki 是一个 AI 驱动的个人知识管理系统。它使用 MimoCode 的技能系统，让 AI 自动帮你整理笔记、建立知识图谱、进行深度研究。
-
-### 核心特性
-
-- **自动整理**：AI 自动提取实体、概念，建立关联
-- **持久记忆**：跨会话保持连续性，不会"失忆"
-- **深度研究**：自动搜索、整理、归档研究结果
-- **可视化图谱**：在 Obsidian 中查看知识关联
-
-### 工作原理
+## 项目结构
 
 ```
-你说话 → AI 读技能指令 → AI 按指令读 Wiki → AI 回答
+mimocode-wiki/
+├── skills/              # 15 个技能文件
+├── agents/              # 3 个代理定义
+├── commands/            # 5 个命令定义
+├── _templates/          # 5 个模板文件
+├── bin/                 # 安装和卸载脚本
+├── .gitignore           # Git 忽略规则
+└── README.md            # 本文件
 ```
 
-AI 不会自己决定读什么，技能文件告诉它怎么做。
+**注意**：项目不包含 `.mimocode/`、`.obsidian/`、`.vault-meta/` 等目录。这些由安装脚本自动创建。
 
-### Token 消耗优化
+## 快速开始
 
-**问题**：加载整个 Wiki 会消耗大量 token。
-
-**解决方案**：分层加载，按需读取。
-
-| 文件 | 内容 | Token 消耗 |
-|------|------|-----------|
-| hot.md | 最近上下文（500字） | ~500 |
-| index.md | 目录索引 | ~1000 |
-| 具体页面 | 单个页面 | ~300/页 |
-
-**工作流程**：
-1. AI 首先读取 hot.md（500 token）
-2. 如果需要更多信息，读取 index.md（1000 token）
-3. 只读取必要的具体页面（每页 300 token）
-4. 综合回答
-
-**对比**：
-- 不优化：加载整个 Wiki → 数万 token
-- 优化后：只加载需要的 → 数千 token
-
-### 技能用途
-
-| 技能 | 用途 | 何时使用 |
-|------|------|---------|
-| **ingest** | 将文件添加到 Wiki | 有新知识需要整理 |
-| **query** | 从 Wiki 查询答案 | 需要回忆之前的知识 |
-| **autoresearch** | 自动搜索、整理、归档 | 想深入研究某个主题 |
-| **think** | 10 原则深度思考 | 遇到复杂问题需要分析 |
-| **save** | 保存当前对话 | 对话有价值，想保留 |
-| **lint** | 检查 Wiki 健康 | 定期维护 |
-
----
-
-## 什么是 Obsidian
-
-Obsidian 是一个基于本地 Markdown 文件的知识管理工具。
-
-### 为什么用 Obsidian？
-
-- **本地存储**：所有数据都在你的电脑上，没有云端依赖
-- **双向链接**：轻松建立笔记之间的关联
-- **图谱视图**：可视化知识网络
-- **插件丰富**：通过插件扩展功能
-- **免费使用**：核心功能完全免费
-
-### Obsidian vs 其他工具
-
-| 特性 | Obsidian | Notion | Evernote |
-|------|----------|--------|----------|
-| 数据存储 | 本地 | 云端 | 云端 |
-| 离线使用 | ✅ | ❌ | ⚠️ 有限 |
-| 双向链接 | ✅ | ⚠️ 有限 | ❌ |
-| 图谱视图 | ✅ | ❌ | ❌ |
-| 插件系统 | ✅ | ⚠️ 有限 | ❌ |
-| 价格 | 免费 | 免费/付费 | 免费/付费 |
-
----
-
-## 安装 Obsidian
-
-### Windows
-
-1. 访问 https://obsidian.md/download
-2. 下载 Windows 版本
-3. 运行安装程序
-4. 按照提示完成安装
-
-### macOS
-
-1. 访问 https://obsidian.md/download
-2. 下载 macOS 版本
-3. 拖动 Obsidian 到 Applications 文件夹
-
-### Linux
-
-```bash
-# Flatpak
-flatpak install flathub md.obsidian.Obsidian
-
-# 或下载 AppImage
-```
-
-### 首次启动
-
-1. 启动 Obsidian
-2. 选择 "Open folder as vault"
-3. 选择项目目录（mimocode-wiki）
-4. 点击 "Trust author and enable plugins"
-
----
-
-## 安装插件
-
-### 必需插件
-
-#### 1. Templater（模板引擎）
-
-1. 打开 Obsidian
-2. 点击左下角齿轮图标（设置）
-3. 选择 "Community Plugins"
-4. 点击 "Browse"
-5. 搜索 "Templater"
-6. 点击 "Install"
-7. 安装后点击 "Enable"
-
-**配置 Templater**：
-1. 设置 > Templater
-2. Template folder location: `_templates`
-3. Trigger Templater on new file creation: 开启
-
-#### 2. Obsidian Git（自动备份）
-
-1. 设置 > Community Plugins > Browse
-2. 搜索 "Obsidian Git"
-3. 安装并启用
-
-**配置 Obsidian Git**：
-1. 设置 > Obsidian Git
-2. Auto backup interval: 15 minutes
-3. Backup on file change: 开启
-4. Pull updates on startup: 开启
-
-#### 3. Dataview（查询引擎）
-
-1. 设置 > Community Plugins > Browse
-2. 搜索 "Dataview"
-3. 安装并启用
-
-**配置 Dataview**：
-1. 设置 > Dataview
-2. Enable JavaScript Queries: 开启
-3. Enable Inline Queries: 开启
-
-### 可选插件
-
-- **Calendar**：右侧日历视图
-- **Excalidraw**：绘图工具
-- **Banners**：页面横幅
-
----
-
-## 安装项目
-
-### 方法 1: 从 GitHub 下载（推荐）
-
-1. 访问 https://github.com/fenzel999/mimocode-wiki
-2. 点击绿色 "Code" 按钮
-3. 选择 "Download ZIP"
-4. 解压到你喜欢的位置
-5. 打开 Obsidian，选择解压后的目录作为 Vault
-
-### 方法 2: 使用 Git
+### 安装
 
 ```powershell
-# 克隆仓库
-git clone https://github.com/fenzel999/mimocode-wiki.git
-
-# 进入目录
+# 进入项目目录
 cd mimocode-wiki
-```
 
-### 方法 3: 一键安装脚本
-
-```powershell
 # 运行安装脚本
 .\bin\install.ps1
 ```
 
----
+安装脚本会自动：
+- 复制技能到 `~/.mimocode/skills/`
+- 复制代理到 `~/.mimocode/agents/`
+- 复制命令到 `~/.mimocode/commands/`
+- 复制模板到 `~/.mimocode/_templates/`
+- 创建 Obsidian 配置
+- 创建 Wiki 目录结构
+
+### 卸载
+
+```powershell
+.\bin\uninstall.ps1
+```
+
+卸载脚本只会删除 mimocode-wiki 的插件，不影响其他插件。
 
 ## 使用教程
 
-### 第一步：初始化 Wiki
+### 第一步：安装后
 
-1. 打开 MimoCode
-2. 输入 `/wiki`
-3. AI 会问你："这个 Wiki 用来做什么？"
-4. 回答后，Wiki 自动创建完成
+1. 打开 Obsidian
+2. 选择 mimocode-wiki 目录作为 Vault
+3. 安装插件：Templater, Obsidian Git, Dataview
+4. 打开 MimoCode
+5. 输入 `/wiki` 初始化 Wiki
 
 ### 第二步：添加知识
 
@@ -277,61 +115,7 @@ query deep: 全面分析 Blazor 的优缺点
 lint the wiki
 ```
 
----
-
-## 功能演示
-
-### 示例 1：添加技术笔记
-
-```
-# 创建一个测试文件
-# 文件内容：# .NET 10 新特性
-
-## C# 14
-- 字段关键字
-- 空条件赋值
-- 扩展成员
-
-## ASP.NET Core
-- Blazor 改进
-- Minimal API 增强
-
-# 在 MimoCode 中运行
-ingest .raw/dotnet10.md
-```
-
-### 示例 2：查询知识
-
-```
-query: .NET 10 有什么新特性？
-```
-
-AI 会从 Wiki 中找到相关页面并综合回答。
-
-### 示例 3：创建知识图谱
-
-```
-/canvas new "技术学习"
-/canvas add note [.NET 10]
-/canvas add note [Blazor]
-/canvas add text "技术栈规划"
-```
-
-在 Obsidian 中打开 `wiki/canvases/技术学习.canvas` 查看图谱。
-
-### 示例 4：深度研究
-
-```
-/autoresearch 微服务架构设计
-```
-
-AI 会自动搜索相关资料，整理成 Wiki 页面。
-
----
-
-## 技能参考
-
-### 核心技能
+## 技能列表
 
 | 技能 | 命令 | 功能 |
 |------|------|------|
@@ -344,19 +128,7 @@ AI 会自动搜索相关资料，整理成 Wiki 页面。
 | canvas | `/canvas` | 可视化图谱 |
 | think | `/think [问题]` | 深度思考 |
 
-### 辅助技能
-
-| 技能 | 命令 | 功能 |
-|------|------|------|
-| wiki-retrieve | `retrieve [查询]` | 混合检索 |
-| wiki-mode | `set vault mode` | 切换模式 |
-| wiki-cli | `wiki-cli` | Obsidian CLI |
-| wiki-fold | `fold the log` | 日志折叠 |
-| defuddle | `defuddle [URL]` | 清理网页 |
-| obsidian-bases | 参考用 | 数据库视图 |
-| obsidian-markdown | 参考用 | Markdown 语法 |
-
-### 代理
+## 代理列表
 
 | 代理 | 功能 |
 |------|------|
@@ -364,118 +136,33 @@ AI 会自动搜索相关资料，整理成 Wiki 页面。
 | wiki-lint | 健康检查 |
 | wiki-research | 自动研究 |
 
----
-
 ## 卸载说明
 
-### 一键卸载（推荐）
+运行 `.\bin\uninstall.ps1` 即可一键卸载。
 
-```powershell
-.\bin\uninstall.ps1
-```
-
-此脚本只会卸载 mimocode-wiki 的插件，不会影响其他插件。
-
-### 手动卸载
-
-#### 卸载 MimoCode 技能
-
-```powershell
-# 删除 mimocode-wiki 相关技能
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\autoresearch" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\canvas" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\defuddle" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\obsidian-bases" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\obsidian-markdown" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\save" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\think" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\wiki" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\wiki-cli" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\wiki-fold" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\wiki-ingest" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\wiki-lint" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\wiki-mode" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\wiki-query" -Recurse -Force
-Remove-Item -Path "$env:USERPROFILE\.mimocode\skills\wiki-retrieve" -Recurse -Force
-```
-
-#### 卸载 Obsidian 插件
-
-1. 打开 Obsidian
-2. 设置 > Community Plugins
-3. 点击插件旁边的垃圾桶图标
-4. 确认卸载
-
-**注意**：这只会卸载插件，不会删除你的笔记数据。
-
-#### 卸载项目
-
-1. 删除项目目录
-2. Wiki 内容保留在项目目录中（除非你选择了删除）
-
-### 内容保存
-
-**卸载后内容会保留！**
-
-- **Obsidian 卸载**：笔记数据保存在项目目录中，不会被删除
-- **插件卸载**：插件配置被删除，但笔记内容保留
-- **项目删除**：如果你删除了项目目录，内容会丢失
-
-### 备份建议
-
-1. **定期备份**：使用 Obsidian Git 自动备份
-2. **手动备份**：复制整个项目目录
-3. **云同步**：使用 OneDrive、Dropbox 等同步工具
-
----
+**注意**：
+- 只删除 mimocode-wiki 的插件
+- 不影响其他插件
+- Wiki 内容保留在项目目录中
 
 ## 常见问题
 
 ### Q: Obsidian 是免费的吗？
-
-是的，Obsidian 核心功能完全免费。同步服务和发布服务需要付费，但不是必需的。
+是的，Obsidian 核心功能完全免费。
 
 ### Q: 我的数据安全吗？
-
-是的，所有数据都保存在你的本地电脑上，没有云端依赖。
-
-### Q: 可以在多台电脑上使用吗？
-
-可以，使用 Obsidian Sync 或其他同步工具（OneDrive、Dropbox）同步项目目录。
+是的，所有数据都保存在你的本地电脑上。
 
 ### Q: 如何更新项目？
-
 ```powershell
 cd mimocode-wiki
 git pull
 ```
 
 ### Q: 遇到问题怎么办？
-
 1. 检查插件是否正确安装
 2. 重启 Obsidian
-3. 查看 Obsidian 控制台（Ctrl+Shift+I）
-4. 在 GitHub 提交 Issue
-
-### Q: 如何备份 Wiki？
-
-Wiki 就是普通文件，直接备份整个目录即可。
-
-### Q: 如何与团队共享？
-
-将 Wiki 目录放在共享位置，或使用 Git 同步。
-
----
-
-## 贡献
-
-欢迎贡献！请查看 [CONTRIBUTING.md](CONTRIBUTING.md)。
-
----
-
-## 许可证
-
-MIT License - 详见 [LICENSE](LICENSE)
+3. 在 GitHub 提交 Issue
 
 ---
 
